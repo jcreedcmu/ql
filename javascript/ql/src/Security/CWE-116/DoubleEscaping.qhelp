@@ -52,7 +52,7 @@ The following example shows a pair of hand-written HTML encoding and decoding fu
 <p>
 The encoding function correctly handles ampersand before the other characters. For example,
 the string <code>me &amp; "you"</code> is encoded as <code>me &amp;amp; &amp;quot;you&amp;quot;</code>,
-and the string <code>&quot;</code> is encoded as <code>&amp;quot;</code>.
+and the string <code>&amp;quot;</code> is encoded as <code>&amp;quot;</code>.
 </p>
 
 <p>
