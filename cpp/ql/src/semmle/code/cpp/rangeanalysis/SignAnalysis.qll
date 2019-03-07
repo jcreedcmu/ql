@@ -269,8 +269,8 @@ private predicate eqBound(IRGuardCondition guard, Operand eqbound, Operand bound
 
 
 /**
- * Holds if `bound` is a bound for `v` at `pos` that needs to be positive in
- * order for `v` to be positive.
+ * Holds if `comp` is a bound for `bound` at `op` that needs to be positive in
+ * order for `bound` to be positive.
  */
 private predicate posBound(IRGuardCondition comp, Operand bound, Operand op) {
   upperBound(comp, bound, op, _) or
@@ -278,8 +278,8 @@ private predicate posBound(IRGuardCondition comp, Operand bound, Operand op) {
 }
 
 /**
- * Holds if `bound` is a bound for `v` at `pos` that needs to be negative in
- * order for `v` to be negative.
+ * Holds if `comp` is a bound for `bound` at `op` that needs to be negative in
+ * order for `bound` to be negative.
  */
 private predicate negBound(IRGuardCondition comp, Operand bound, Operand op) {
   lowerBound(comp, bound, op, _) or
@@ -287,7 +287,7 @@ private predicate negBound(IRGuardCondition comp, Operand bound, Operand op) {
 }
 
 /**
- * Holds if `bound` is a bound for `v` at `pos` that can restrict whether `v`
+ * Holds if `comp` is a bound for `bound` at `op` that can restrict whether `bound`
  * can be zero.
  */
 private predicate zeroBound(IRGuardCondition comp, Operand bound, Operand op) {
@@ -296,17 +296,17 @@ private predicate zeroBound(IRGuardCondition comp, Operand bound, Operand op) {
   eqBound(comp, bound, op, _)
 }
 
-/** Holds if `bound` allows `v` to be positive at `pos`. */
+/** Holds if `comp` allows `bound` to be positive at `op`. */
 private predicate posBoundOk(IRGuardCondition comp, Operand bound, Operand op) {
   posBound(comp, bound, op) and TPos() = operandSign(bound)
 }
 
-/** Holds if `bound` allows `v` to be negative at `pos`. */
+/** Holds if `comp` allows `bound` to be negative at `op`. */
 private predicate negBoundOk(IRGuardCondition comp, Operand bound, Operand op) {
   negBound(comp, bound, op) and TNeg() = operandSign(bound)
 }
 
-/** Holds if `bound` allows `v` to be zero at `pos`. */
+/** Holds if `comp` allows `bound` to be zero at `op`. */
 private predicate zeroBoundOk(IRGuardCondition comp, Operand bound, Operand op) {
   lowerBound(comp, bound, op, _) and TNeg() = operandSign(bound) or
   lowerBound(comp, bound, op, false) and TZero() = operandSign(bound) or
